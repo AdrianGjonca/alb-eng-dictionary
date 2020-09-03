@@ -1,0 +1,14 @@
+[
+    {
+        "word": "hello",
+        "language": "English",
+        "definition": "A polite universal greeting.",
+        "translations": [["pershendetje","Albanian"]]
+    },
+    {
+        "word": "pershendetje",
+        "language": "Albanian",
+        "definition": "A polite greeting, usually only used when seing someone after not having seen them for at least a few hours.",
+        "translations": [["pershendetje","Albanian"]]
+    }
+]

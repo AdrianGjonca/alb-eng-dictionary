@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AlbanianEnglishDictionary"
+    }
+  },
+  "defaultProject": "AlbanianEnglishDictionary",
+  "cli": {
+    "analytics": "806ca4d3-c2f7-4941-ac3c-6c08ca26658d"
+  }
 }
