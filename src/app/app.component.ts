@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DictionaryDataFetchService } from './data_and_services/dictionary-data-fetch.service';
 import { DictionaryEntry_DTO, DictionaryEntry } from './data_and_services/dataformating';
 
@@ -7,14 +7,20 @@ import { DictionaryEntry_DTO, DictionaryEntry } from './data_and_services/datafo
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   constructor(private dataSr: DictionaryDataFetchService ){
-    //console.log(dataSr.data[0].word);
+    
   }
 
   title = 'AlbanianEnglishDictionary';
 
   getDataSr(): DictionaryDataFetchService{
     return this.dataSr;
+  }
+
+  async ngOnInit() {
+    console.log("init app comp");
+    await this.dataSr.initialize();
+    console.log(this.dataSr.data[0].word);
   }
 }
