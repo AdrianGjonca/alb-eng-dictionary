@@ -13,15 +13,27 @@ export class DictionaryDataFetchService {
   url = 'assets';
   data: DictionaryEntry[] = [];
 
-  async initialize() {
-    const entriesDTO: DictionaryEntry_DTO[] = await this.http
-      .get<DictionaryEntry_DTO[]>(`${this.url}/dummy_backend.json`)
-      .toPromise();
+  private _initPromise: Promise<DictionaryEntry_DTO[]>;
 
-    entriesDTO.forEach((element) => {
-      let x = new DictionaryEntry();
-      x.DTO_to_Entry(element);
-      this.data.push(x);
+  async initialize() {
+    if (this._initPromise) {
+      return this._initPromise;
+    }
+
+    this._initPromise = this.http
+    .get<DictionaryEntry_DTO[]>(`${this.url}/dummy_backend.json`)
+    .toPromise()
+
+    return this._initPromise.then((entriesDTO: DictionaryEntry_DTO[]) => {
+      entriesDTO.forEach((element) => {
+        let x = new DictionaryEntry();
+        x.DTO_to_Entry(element);
+        this.data.push(x);
+      });
     });
   }
 }
+
+// app component => await dataService.initialize() 
+// second component => await dataserive.init()
+// third component => await dataserive.init()
